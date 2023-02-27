@@ -1,17 +1,17 @@
-import { EventEmitter } from '@angular/core';
-import { Truck } from './../Models/Truck.model';
+import { BehaviorSubject } from 'rxjs';
+import { Truck } from '../Models/Truck.model';
 
 export default class TruckService {
-  trucksChanged = new EventEmitter<Truck[]>();
 
   private truks: Truck[] = [new Truck(1, 'isuzu', 7700000, 443, 'Balssem')];
+  trucksChanged = new BehaviorSubject<Truck[]>(this.truks);
 
   /**
    *
    *  @type {Array}
    */
   getTrucks() {
-    return this.truks.slice();
+    return this.trucksChanged.value;
   }
 
   /**
@@ -20,7 +20,7 @@ export default class TruckService {
    */
   public addTruck(truck: Truck) {
     this.truks.push(truck);
-    this.trucksChanged.emit(this.truks.slice());
+    this.trucksChanged.next(this.truks);
   }
   /**
    *

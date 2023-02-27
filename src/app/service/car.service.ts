@@ -1,14 +1,12 @@
-import { EventEmitter } from '@angular/core';
 import { Car } from "../Models/Car.model";
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 export default class CarService {
-    carsChanged=new Subject<Car[]>();
     private cars : Car[] =
     [
         new Car(1,"porche",2400000,3,"Balssem"),
         new Car(2,"porche",4000000,3,"Folen")
     ];
-
+    carsChanged=new BehaviorSubject<Car[]>(this.cars);
   
 
   /**
@@ -16,7 +14,8 @@ export default class CarService {
    *  @type {Array}
    */
    getCars(){
-    return this.cars.slice();
+    
+    return this.carsChanged.value;
   }
    /**
   * addCar
@@ -24,7 +23,7 @@ export default class CarService {
   */
   addCar(car:Car){
     this.cars.push(car);
-    this.carsChanged.next(this.cars.slice());
+    this.carsChanged.next(this.cars);
   }
 
  
@@ -40,16 +39,18 @@ export default class CarService {
     this.cars[index]['name'] = car['name'];
     this.cars[index]['price'] = car['price'];
     this.cars[index]['numberOfSeats'] = car['numberOfSeats'];
-
    }
+   this.carsChanged.next(this.cars);
 }
 /**
  * deleteCar
  * @param id 
  */
   public deleteCar(id: number) {
+    
     let index = this.cars.findIndex(d => d.id === id);
     this.cars.splice(index, 1);
+    
   }
 
 }

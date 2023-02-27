@@ -1,15 +1,13 @@
 import { Car } from '../Models/Car.model';
-import { Component, OnInit } from '@angular/core';
-import CarService from './car.service';
-// import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import CarService from '../service/car.service';
 @Component({
   selector: 'app-car',
   templateUrl: './car-list.component.html',
   styleUrls: ['./car-list.component.css']
 })
-export class CarListComponent implements OnInit {
+export class CarListComponent implements OnInit,OnDestroy {
   public cars : Car[] = [];
-// private subscription!:Subscription;
 
   constructor(private carService:CarService) {  }
 
@@ -20,16 +18,14 @@ export class CarListComponent implements OnInit {
         this.cars=cars;
       }
     )
+    
   }
-// ngOnDestroy(): void {
-//   this.subscription.unsubscribe();
-// }
-// onDeletecar(car:any){
-//   this.carService.deleteCar(car.id).subscribe(
-//     ()=>{
-//       alert("deleted");
-//     }
-//   )
-  
-// }
+  onDeletecar(id:number){
+    
+    this.carService.deleteCar(id);
+}
+ngOnDestroy(): void {
+  this.carService.carsChanged.unsubscribe();
+}
+
 }

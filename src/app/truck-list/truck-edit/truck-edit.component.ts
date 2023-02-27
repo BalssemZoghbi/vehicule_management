@@ -1,6 +1,6 @@
 import { Truck } from './../../Models/Truck.model';
 import { Component, OnInit  } from '@angular/core';
-import TruckService from '../truck.sevice';
+import TruckService from '../../service/truck.sevice';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -25,16 +25,16 @@ export class TruckEditComponent implements OnInit {
 
   ngOnInit() {
   }
-
+/**
+ * 
+ * @param form 
+ */
   onAddItem(form:NgForm) {
-    // const ingId= this.idInputRef.nativeElement.value;
-    // const ingName = this.nameInputRef.nativeElement.value;
-    // const ingPrice = this.priceInputRef.nativeElement.value;
-    // const ingnbr = this.trailerWeightInputRef.nativeElement.value;
-    // const ingOwner = this.ownerInputRef.nativeElement.value;
     const value=form.value;
-    const newtruck = new Truck(value.id,value.name, value.price,value.trailerWeight,value.owner);
+    const newtruck = new Truck(value.id,value.name, value.price,value.trailerWeight,value._owner);
     this.truckService.addTruck(newtruck);
   }
-
+  onDeletecar(ele:number){
+    this.truckService.deleteTruck(ele);
+}
 }

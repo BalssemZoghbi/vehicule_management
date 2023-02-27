@@ -21,9 +21,10 @@
             <td>{{truck.name}}</td>
             <td>{{truck.price}}</td>
             <td>{{truck.trailerWeight}}</td>
-            <td>{{truck.owner}}</td>
+            <td>{{truck._owner}}</td>
             <th>
-              <a >delete</a>
+              <button type="button" class="btn btn-danger" (click)="onDeletecar(truck.id)">delete</button>
+
             </th>
           </tr>
         </tbody>

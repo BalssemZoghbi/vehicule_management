@@ -13,7 +13,7 @@ export class Truck extends Vehicle {
    * @param {number} trailerWeight
    * @param {string} owner
    */
-  constructor(id: number, name: string, price: number, trailerWeight: number,owner:string) {
+  constructor(id: number, name: string, price: number, trailerWeight: number,owner?:string) {
     super(id, name, price,owner);
     this._trailerWeight = trailerWeight;
   }

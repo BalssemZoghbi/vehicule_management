@@ -1,4 +1,5 @@
 <div class="row">
+  <h1>CARS</h1>
   <div class="col-xs-12">
     <form (ngSubmit)="onAddItem(f)" #f="ngForm">
       <div class="row">
@@ -9,7 +10,8 @@
             id="id"
             class="form-control"
             name="id"
-            
+            required
+            ngModel
             >
         </div>
         <div class="col-sm-2 form-group">
@@ -19,7 +21,6 @@
             id="name"
             class="form-control"
             name="name"
-            
             ngModel>
         </div>
         <div class="col-sm-2 form-group">
@@ -50,8 +51,8 @@
             type="text"
             id="owner"
             class="form-control"
-            name="owner"
-            #ownerInput
+            name="_owner"
+            ngModel
             >
         </div>
       </div>

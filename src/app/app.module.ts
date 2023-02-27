@@ -9,8 +9,9 @@ import { CarEditComponent } from './car-list/car-edit/car-edit.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { TruckListComponent } from './truck-list/truck-list.component';
 import { TruckEditComponent } from './truck-list/truck-edit/truck-edit.component';
-import CarService from './car-list/car.service';
-import TruckService from './truck-list/truck.sevice';
+import CarService from './service/car.service';
+import TruckService from './service/truck.sevice';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import TruckService from './truck-list/truck.sevice';
     FormsModule,
   ],
   providers: [CarService,TruckService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -21,10 +21,10 @@
           <td>{{car.name}}</td>
           <td>{{car.price}}</td>
           <td>{{car.numberOfSeats}}</td>
-          <td>{{car.owner}}</td>
+          <td>{{car._owner}}</td>
           <th>
             <!-- <button type="button" class="btn btn-danger" (click)="onDeletecar(car)">delete</button> -->
-            <button type="button" class="btn btn-danger" >delete</button>
+            <button type="button" class="btn btn-danger" (click)="onDeletecar(car.id)">delete</button>
            
           </th>
         </tr>
